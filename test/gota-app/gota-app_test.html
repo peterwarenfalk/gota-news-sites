@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>gota-app test</title>
+
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../src/gota-app/gota-app.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <gota-app></gota-app>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('gota-app', function() {
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'gota-app');
+        });
+      });
+    </script>
+  </body>
+</html>

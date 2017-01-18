@@ -1,0 +1,17 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/gota-app/gota-app.html",
+  "fragments": [
+    "src/gota-startpage/gota-startpage.html",
+    "src/gota-articlepage/gota-articlepage.html",
+    "src/gota-articlepage/gota-searchpage.html"
+  ],
+  "sources": [
+    "src/**/*",
+    "images/**/*",
+    "bower.json"
+  ],
+  "includeDependencies": [
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}
