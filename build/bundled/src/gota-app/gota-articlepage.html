@@ -1,0 +1,46 @@
+<html><head><meta charset="UTF-8"><link rel="import" href="gota-app.html"></head><body><dom-module id="gota-articlepage">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+
+    </style>
+    <gota-article></gota-article>
+      <gota-article-divider></gota-article-divider>
+    <gota-article></gota-article> 
+      <gota-article-divider></gota-article-divider>
+    <gota-article></gota-article>   
+      <gota-article-divider></gota-article-divider>
+    <gota-article></gota-article>      
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'gota-articlepage',
+
+      behaviors: [Polymer.NeonAnimatableBehavior],
+
+      properties: {
+         animationConfig:{
+          value: function(){
+             return {
+               'entry': {
+                 name: 'fade-in-animation',
+                 node: this,
+                 timing: {delay:400, duration:1000}
+               },
+               'exit': {
+                 name: 'fade-out-animation',
+                 node:this,
+                 timing: {delay:0, duration:400}
+               }
+             }
+           }
+         }
+       }
+    });
+  </script>
+</dom-module></body></html>
