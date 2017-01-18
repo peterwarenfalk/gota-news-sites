@@ -12,6 +12,10 @@
     "styles/**/*",
     "bower.json"
   ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ],
   "includeDependencies": [
     "bower_components/webcomponentsjs/webcomponents-lite.min.js"
   ]
