@@ -1,7 +1,0 @@
-{
-  "name": "Gota media",
-  "short_name": "Gota media",
-  "description": "Prototyp of future news app",
-  "start_url": "/",
-  "display": "standalone"
-}
