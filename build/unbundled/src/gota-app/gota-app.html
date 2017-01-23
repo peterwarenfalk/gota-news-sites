@@ -1,0 +1,287 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-submenu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="gota-startpage.html">
+<link rel="import" href="gota-articlepage.html">
+<link rel="import" href="gota-searchpage.html">
+
+</head><body><dom-module id="gota-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      a.link{
+        color: red !important;
+      }
+
+      paper-tabs[link] a{
+        
+        color:black;
+        text-decoration: none !important;
+      }
+
+      body {
+        margin: 0;
+        font-family: arial;
+        background-color: #eee;
+      }
+      app-header.main-app-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        height: 128px;
+        z-index:1;
+        color: rgba(0,0,0,0.87);
+        background-color: #fff;
+      }
+
+      app-header.drawer-app-header {
+        border-bottom:1px solid rgba(0,0,0,0.12);
+        background-color: #fff;
+      }
+
+      app-toolbar {
+        margin-bottom: 20px;
+      }
+
+      app-drawer{
+        --app-drawer-content-container:{
+          background:#eee;;
+        }
+      }
+
+      paper-tab{
+        text-transform:uppercase;
+      }
+
+      app-toolbar{margin-bottom:0;}
+
+      paper-button.accent-button{
+        background: var(--accent-color);
+        color:#fff;
+      }
+
+      app-toolbar paper-tabs, app-toolbar paper-button{
+        margin:0 24px;
+      }
+
+      neon-animated-pages{
+        /*width:calc(100% - 64px);*/
+        max-width:1280px;
+        margin:0 auto;
+        top: 0;
+      }
+
+      .logo-holder img{height:40px;}
+
+      hr{background-color: rgba(0,0,0,0.12);height: 1px;border-style: hidden;margin: 0;margin:16px}
+      paper-menu.sublist{padding:0 !important;}
+      .sublist paper-item{font-size:14px;padding-left:32px;background:#eee}
+
+      .sublist.sub-orter paper-item{background:#E3F2FD !important;}
+      .sublist.sub-sport paper-item{background:#ffe9c7 !important;}
+      .sublist.sub-reagera paper-item{background:#FFEBEE !important;}
+      .sublist.sub-affarsliv paper-item{background:#E0F2F1 !important;}
+
+      paper-submenu.section-orter paper-item.ort-item{color:#2196F3;border-left:4px solid #2196F3 !important;}
+      paper-submenu.section-sport paper-item.sport-item{color:#FF9800;border-left:4px solid #FF9800 !important;}
+      paper-submenu.section-reagera paper-item.reagera-item{color:#F44336;border-left:4px solid #F44336 !important;}
+      paper-submenu.section-affarsliv paper-item.affarsliv-item{color:#009688;border-left:4px solid #009688 !important;}
+      paper-submenu.section-kultur paper-item.kultur-item{color:#4CAF50;border-left:4px solid #4CAF50!important;}
+      paper-submenu.section-familj paper-item.familj-item{color:#CDDC39;border-left:4px solid #CDDC39!important;}
+      paper-item.ledare-item{color:#3F51B5;border-left:4px solid #3F51B5!important;}
+      paper-submenu.section-bonus paper-item.bonus-item{color:#E91E63;border-left:4px solid #E91E63!important;}
+
+      #mainHeader{display:block}
+      #searchHeader{display:none;}
+
+      a paper-icon-button {color:rgba(0,0,0,0.87)}
+
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}">
+    </app-route>
+
+    <app-scrollpos-control selected="{{page}}"></app-scrollpos-control>
+
+    <app-drawer-layout force-narrow="" id="panel">
+      <app-drawer align="end">
+        <app-header class="drawer-app-header" fixed="" effects="waterfall">
+          <app-toolbar>
+            <paper-icon-button icon="arrow-back" drawer-toggle=""></paper-icon-button>
+          </app-toolbar>
+          <div>
+            <div class="horizontal-section">
+              <paper-menu attr-for-item-title="label">
+                <paper-item>Senaste nytt</paper-item>
+                <hr>
+                <paper-submenu label="paper-menu" class="section-orter">                  
+                  <paper-item class="menu-trigger ort-item">Orter</paper-item>
+                    <paper-menu class="menu-content sublist sub-orter" label="orter">
+                      <paper-item class="menu-trigger">Emmaboda</paper-item>
+                      <paper-item class="menu-trigger">Hultsfred</paper-item>
+                      <paper-item class="menu-trigger">Högsby</paper-item>
+                      <paper-item class="menu-trigger">Kalmar</paper-item>
+                      <paper-item class="menu-trigger">Mönsterås</paper-item>
+                      <paper-item class="menu-trigger">Nybro</paper-item>
+                      <paper-item class="menu-trigger">Oskarshamn</paper-item>
+                      <paper-item class="menu-trigger">Torsås</paper-item>
+                      <paper-item class="menu-trigger">Öland</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+
+                <paper-submenu label="paper-menu" class="section-sport">                  
+                  <paper-item class="menu-trigger sport-item">Sporten</paper-item>
+                    <paper-menu class="menu-content sublist sub-sport" label="sporten">
+                      <paper-item class="menu-trigger">Sporten</paper-item>
+                      <paper-item class="menu-trigger">Live</paper-item>
+                      <paper-item class="menu-trigger">Ironman</paper-item>
+                      <paper-item class="menu-trigger">Resultat</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+
+                <paper-submenu label="paper-menu" class="section-affarsliv">                  
+                  <paper-item class="menu-trigger affarsliv-item">Affärsliv</paper-item>
+                    <paper-menu class="menu-content sublist sub-affarsliv" label="affarsliv">
+                      <paper-item class="menu-trigger">Affärsliv</paper-item>
+                      <paper-item class="menu-trigger">Annonsera</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+
+                <paper-submenu label="paper-menu" class="section-reagera">                  
+                  <paper-item class="menu-trigger reagera-item">Reagera/Debatt</paper-item>
+                    <paper-menu class="menu-content sublist sub-reagera" label="reagera">
+                      <paper-item class="menu-trigger">Reagera</paper-item>
+                      <paper-item class="menu-trigger">Debatt</paper-item>
+                      <paper-item class="menu-trigger">Insändare och läsarbilder</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+                
+                <paper-submenu label="paper-menu" class="section-kultur">                  
+                  <paper-item class="menu-trigger kultur-item">Kultur &amp; nöje</paper-item>
+                    <paper-menu class="menu-content sublist sub-kultur" label="kultur">
+                      <paper-item class="menu-trigger">Kultur &amp; nöje</paper-item>
+                      <paper-item class="menu-trigger">Boksidan</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+
+                <paper-submenu label="paper-menu" class="section-familj">                  
+                  <paper-item class="menu-trigger familj-item">Familj</paper-item>
+                    <paper-menu class="menu-content sublist sub-familj" label="familj">
+                      <paper-item class="menu-trigger">Familj</paper-item>
+                      <paper-item class="menu-trigger">Skicka in din guldklimp</paper-item>
+                      <paper-item class="menu-trigger">Sätt in en privatannons</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+
+                <paper-item class="ledare-item">Ledare</paper-item>
+
+                <paper-submenu label="paper-menu" class="section-bonus">                  
+                  <paper-item class="menu-trigger bonus-item">Bonus Weekend</paper-item>
+                    <paper-menu class="menu-content sublist sub-bonus" label="bonus">
+                      <paper-item class="menu-trigger">Bonus Weekend</paper-item>
+                      <paper-item class="menu-trigger">Tävla &amp; träna</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+                <hr>
+                <paper-item>TV</paper-item>
+                <paper-submenu label="paper-menu">                  
+                  <paper-item class="menu-trigger">Poddar</paper-item>
+                    <paper-menu class="menu-content sublist" label="podd">
+                      <paper-item class="menu-trigger">Hansson &amp; Hansson-podden</paper-item>
+                      <paper-item class="menu-trigger">Ickedickedoa Hockeypodd</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+                <paper-submenu label="paper-menu">                  
+                  <paper-item class="menu-trigger">Bloggar</paper-item>
+                    <paper-menu class="menu-content sublist" label="blogg">
+                      <paper-item class="menu-trigger">Josefin Bergströms blogg</paper-item>
+                      <paper-item class="menu-trigger">Lena Ovessons blogg</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+                <hr>
+                <paper-item>Kundcenter</paper-item>
+                <paper-submenu label="paper-menu">                  
+                  <paper-item class="menu-trigger">Annonsera</paper-item>
+                    <paper-menu class="menu-content sublist" label="annons">
+                      <paper-item class="menu-trigger">Företag</paper-item>
+                      <paper-item class="menu-trigger">Privat</paper-item>
+                    </paper-menu>
+                </paper-submenu>
+              </paper-menu>
+            </div>
+          </div>
+        </app-header>
+        
+      </app-drawer>
+      <app-header-layout>
+        <app-header class="main-app-header" reveals="" fixed="" effects="waterfall">
+          <div id="mainHeader">
+            <app-toolbar>
+              <span class="flex"></span>
+                <paper-tabs selected="0" link="" sticky="">
+                  <paper-tab>Senaste nytt</paper-tab>
+                  <paper-tab>Kalmar</paper-tab>
+                  <paper-tab>Oskarshamn</paper-tab>
+                  <paper-tab>Sporten</paper-tab>
+                  <paper-tab>TV</paper-tab>
+                </paper-tabs>
+              <paper-icon-button icon="more-vert" drawer-toggle=""></paper-icon-button>
+            </app-toolbar>
+            <app-toolbar>
+              <div class="logo-holder">
+                <a href="/startpage" name="startpage">
+                  <img src="../../images/barran.svg" alt="">
+                </a>
+              </div>
+              <span class="flex"></span>
+              <paper-button class="accent-button">Logga in</paper-button>
+              <a href="/searchpage" name="searchpage">
+                <paper-icon-button icon="search"></paper-icon-button>
+              </a>
+            </app-toolbar>
+          </div>
+
+          <div id="searchHeader">
+            <app-toolbar>
+              <a href="/startpage" name="startpage">
+                <paper-icon-button icon="arrow-back"></paper-icon-button>
+              </a>
+              
+                
+              
+              <div class="paper-font-title">Artikelarkiv</div>
+              
+            </app-toolbar>
+            <app-toolbar style="padding:0 56px;background-color:#fafafa">
+              <paper-input autofocus="" class="flex" label="Sök artiklar..."></paper-input>
+              <paper-icon-button icon="search"></paper-icon-button>
+            </app-toolbar>
+          </div>
+        </app-header>
+
+        <neon-animated-pages role="main" selected="[[page]]" attr-for-selected="name">
+
+          <gota-startpage name="startpage"></gota-startpage>  
+          <gota-articlepage name="articlepage"></gota-articlepage> 
+          <gota-searchpage name="searchpage"></gota-searchpage> 
+        </neon-animated-pages>
+
+      </app-header-layout>
+    </app-drawer-layout>
+  </template>
+
+  <script>Polymer({is:"gota-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"}},observers:["_routePageChanged(routeData.page)"],listeners:{tap:"_goBack"},_routePageChanged:function(e){this.page=e||"startpage"},_pageChanged:function(e){this.importHref(this.resolveUrl("gota-"+e+".html"),null,null,!0),"searchpage"==this.page?(document.getElementById("mainHeader").style.display="none",document.getElementById("searchHeader").style.display="block"):(document.getElementById("mainHeader").style.display="block",document.getElementById("searchHeader").style.display="none")}});</script>
+</dom-module>
+</body></html>

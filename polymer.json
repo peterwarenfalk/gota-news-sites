@@ -2,6 +2,7 @@
   "entrypoint": "index.html",
   "shell": "src/gota-app/gota-app.html",
   "fragments": [
+    "src/app-elements/app-elements.html",
     "src/gota-app/gota-startpage.html",
     "src/gota-app/gota-articlepage.html",
     "src/gota-app/gota-searchpage.html"

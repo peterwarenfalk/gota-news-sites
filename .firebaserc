@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "gota-newssites"
+    "default": "gota-newssites",
+    "Newssites": "newssite-prototype"
   }
 }

@@ -14,7 +14,6 @@
 
 <dom-module id="gota-app">
   <template>
-
     <style>
       :host {
         display: block;
@@ -102,6 +101,11 @@
       paper-submenu.section-familj paper-item.familj-item{color:#CDDC39;border-left:4px solid #CDDC39!important;}
       paper-item.ledare-item{color:#3F51B5;border-left:4px solid #3F51B5!important;}
       paper-submenu.section-bonus paper-item.bonus-item{color:#E91E63;border-left:4px solid #E91E63!important;}
+
+      #mainHeader{display:block}
+      #searchHeader{display:none;}
+
+      a paper-icon-button {color:rgba(0,0,0,0.87)}
 
     </style>
 
@@ -227,45 +231,7 @@
       </app-drawer>
       <app-header-layout>
         <app-header class="main-app-header" reveals fixed effects="waterfall">
-          <!--<template is="dom-if" if="{{!page.startpage}}">
-            <app-toolbar>
-              <span class="flex"></span>
-                <paper-tabs selected="0" link sticky>
-                  <paper-tab>Senaste nytt</paper-tab>
-                  <paper-tab>Kalmar</paper-tab>
-                  <paper-tab>Oskarshamn</paper-tab>
-                  <paper-tab>Sporten</paper-tab>
-                  <paper-tab>TV</paper-tab>
-                </paper-tabs>
-              <paper-icon-button icon="more-vert" drawer-toggle></paper-icon-button>
-            </app-toolbar>
-            <app-toolbar>
-              <div class="logo-holder">
-                <a href="/startpage" name="startpage">
-                  <img src="../../images/barran.svg" alt="" />
-                </a>
-              </div>
-              <span class="flex"></span>
-              <paper-button class="accent-button">Logga in</paper-button>
-              <a href="/seachpage" name="searchpage">
-                <paper-icon-button icon="search"></paper-icon-button>
-              </a>
-            </app-toolbar>
-          </template>
-
-          <template is="dom-if" if="{{page.searchpage}}" hidden$="{{!page.startpage}}">
-            <app-toolbar>
-              <paper-icon-button icon="arrow-back"></paper-icon-button>
-              <div class="paper-font-title">Sök artiklar</div>
-              
-            </app-toolbar>
-            <app-toolbar>
-              <paper-input class="flex" label="Floating label"></paper-input>
-              <paper-icon-button icon="search"></paper-icon-button>
-            </app-toolbar>
-          </template>-->
-
-           
+          <div id="mainHeader">
             <app-toolbar>
               <span class="flex"></span>
                 <paper-tabs selected="0" link sticky>
@@ -289,6 +255,24 @@
                 <paper-icon-button icon="search"></paper-icon-button>
               </a>
             </app-toolbar>
+          </div>
+
+          <div id="searchHeader">
+            <app-toolbar>
+              <a href="/startpage" name="startpage">
+                <paper-icon-button icon="arrow-back"></paper-icon-button>
+              </a>
+              
+                <!--<paper-icon-button on-tap="_goBack()" icon="arrow-back"></paper-icon-button>-->
+              
+              <div class="paper-font-title">Artikelarkiv</div>
+              
+            </app-toolbar>
+            <app-toolbar style="padding:0 56px;background-color:#fafafa;">
+              <paper-input autofocus class="flex" label="Sök artiklar..."></paper-input>
+              <paper-icon-button icon="search"></paper-icon-button>
+            </app-toolbar>
+          </div>
         </app-header>
 
         <neon-animated-pages 
@@ -323,14 +307,33 @@
         '_routePageChanged(routeData.page)'
       ],
 
-      _routePageChanged: function(page) {
-        this.page = page || 'startpage';
+      listeners: {
+        'tap': '_goBack',
       },
+
+      _routePageChanged: function(page) {
+        this.page = page || 'startpage';        
+      },
+
+      // _goBack: function() {
+      //   console.info('Jag har klickat bakåt');
+      //   window.history.back();
+      // },
 
       _pageChanged: function(page) {
         // load page import on demand.
         this.importHref(
           this.resolveUrl('gota-' + page + '.html'), null, null, true);
+        
+        // change toolbar.
+       if (this.page == 'searchpage'){
+        document.getElementById("mainHeader").style.display = 'none';
+        document.getElementById("searchHeader").style.display = 'block';          
+       }
+        else {
+          document.getElementById("mainHeader").style.display = 'block';
+          document.getElementById("searchHeader").style.display = 'none'; 
+        } 
       }     
     });
   </script>

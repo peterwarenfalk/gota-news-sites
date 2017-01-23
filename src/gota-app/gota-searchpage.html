@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-stepper/paper-stepper.html">
 <link rel="import" href="../gota-contentad/gota-contentad.html">
 <link rel="import" href="../gota-panorama1/gota-panorama1.html">
 <link rel="import" href="../gota-rightnow/gota-rightnow.html">
@@ -16,18 +17,113 @@
         margin:24px auto 32px;
       }
 
-      paper-material{background:#fff;display:block;padding:16px;}
+      paper-material{background:#fff;display:block;padding:16px;transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);cursor:pointer;}
+      paper-material:hover{box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+              0 1px 10px 0 rgba(0, 0, 0, 0.12),
+              0 2px 4px -1px rgba(0, 0, 0, 0.4);;margin:4px 0;}
 
-      section.main-content{max-width:980px;flex:1 0 0;height:100vh;}
-      article{width:100%;margin-right:16px;}
-      .inner-article-area{width:300px}
-      aside{width:250px;height:100vh;}
-      .ad{width:250px;position:fixed;top:152px;}
-      .inner-ad{width:300px;height:300px;background:gray;}
+              paper-material.first-item:hover{margin:0 0 4px 0;}
+              paper-material.list-item:hover{margin:4px 0 0;}
+      .article-ingress{overflow:hidden;white-space: nowrap;text-overflow:ellipsis;height:18px;max-width:624px;}
+
+      .section-title{
+        text-transform:uppercase;
+        font-weight:700;
+        color:#2196F3;
+      }
+
+      section.search-content{max-width:760px;flex:1 0 0;height:100vh;margin:0 auto;}
+      
     </style>
     <div class="layout horizontal justified">
-        <section class="main-content">
-          Sökning
+        <section class="search-content">
+          <div class="layout horizontal center justified" style="height:64px">
+            <paper-icon-button disabled icon="chevron-left"></paper-icon-button>
+            <div class="layout vertical center">
+            <span class="paper-font-caption">2016-01-20</span>
+            <span class="paper-font-title">Senaste dygnet</span>
+            </div>
+            <paper-icon-button icon="chevron-right"></paper-icon-button>
+          </div>
+          <paper-material class="first-item layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
+
+          <paper-material class="layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
+
+          <paper-material class="layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
+
+          <paper-material class="layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
+
+          <paper-material class="layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
+
+          <paper-material class="layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
+
+          <paper-material class="layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
+
+          <paper-material class="last-item layout horizontal center justified">
+            <div class="list-image" style="width:40px;height:40px;background:black;margin-right:16px;"></div>
+            <div class="list-texts layout vertical flex">
+              <span class="section-title paper-font-caption">Kalmar</span>
+              <span class="article-heading paper-font-subhead">Lorem ipsum dolor sit amet, consectetur adipiscing elit</span>
+              <span class="article-ingress paper-font-body1">Vestibulum feugiat at diam eu pretium. Pellentesque ut rhoncus tortor, non dapibus lorem. Pellentesque ut rhoncus tortor, non dapibus lorem.</span>
+            </div>
+            <div class="publish-time layout end paper-font-caption self-stretch">07:04</div>
+          </paper-material>
         </section>
 
     </div>
