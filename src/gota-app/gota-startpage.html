@@ -1,4 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../../bower_components/paper-audio-player/paper-audio-player.html">
+<link rel="import" href="../../bower_components/paper-video-controls/paper-video-controls.html">
 <link rel="import" href="../gota-contentad/gota-contentad.html">
 <link rel="import" href="../gota-panorama1/gota-panorama1.html">
 <link rel="import" href="../gota-rightnow/gota-rightnow.html">
@@ -8,12 +12,95 @@
 <dom-module id="gota-startpage">
   <!-- Defines the element's style and local DOM -->
   <template>
+    <style include="app-grid-style">
+
+        :host {
+          display: block;
+          --app-grid-columns: 2;
+          --app-grid-gutter: 8px;
+          --app-grid-item-height: 150px;
+          --app-grid-expandible-item-columns: 2;
+        }
+
+        app-header {
+          background-color: rgba(255, 255, 255, 0.8);
+          color: black;
+          -webkit-backdrop-filter: saturate(180%) blur(20px);
+          backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        ul {
+          padding: 0;
+          list-style: none;
+        }
+
+        [main-title] {
+          font-weight: bold;
+        }
+
+        .centered-container {
+          margin-top: 40px;
+          max-width: 1000px;
+          margin: 40px auto;
+        }
+
+        .loadingIndicator {
+          font-size: 16px;
+          text-align: center;
+          height: 60px;
+        }
+
+        .loadingIndicator paper-spinner {
+          margin-right: 20px;
+          vertical-align: middle;
+        }
+
+        .item {
+          background-color: white;
+          background-size:contain;
+          background-position: center center;
+          background-repeat:no-repeat
+        }
+
+        .item video{max-width:100%;}
+
+        .item:nth-child(3n + 1) {
+          @apply(--app-grid-expandible-item);
+        }
+
+        @media(max-width: 799px) {
+
+          :host {
+            --app-grid-columns: 2;
+            --app-grid-gutter: 5px;
+            --app-grid-item-height: 200px;
+          }
+
+          .centered-container {
+            margin: 10px 5px;
+          }
+
+          .item:nth-child(5n + 1) {
+            height: 250px;
+          }
+
+          [spacer] {
+            margin-left: 0;
+          }
+
+        }
+
+      </style>
     <style>
       :host {
         display: block;
         height:100vh;
         width:calc(100% - 36px);
         margin:24px auto 32px;
+      }
+
+      paper-audio-player {
+        --paper-audio-player-color:var(--accent-color);
       }
 
       paper-material{background:#fff;display:block;padding:16px;}
@@ -34,6 +121,74 @@
             <article>
                 <paper-material>
                 <h1 class="paper-font-display1">Hello [[prop1]]</h1>
+                <div class="section-content-heading paper-font-title" style="padding:16px 0;border-top:1px solid rgba(0,0,0,0.12);border-bottom:1px solid rgba(0,0,0,0.12)">
+                  <iron-icon icon="hardware:tv"></iron-icon> TV Play
+                </div>
+                <ul class="app-grid">
+                    <li class="item">
+                      <paper-video-controls>
+                        <video>
+                            <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+                        </video>
+                      </paper-video-controls>
+                    </li>
+                    <li class="item">
+                      <paper-video-controls>
+                        <video>
+                            <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+                        </video>
+                      </paper-video-controls>
+                    </li>
+                    <li class="item">
+                      <paper-video-controls>
+                        <video>
+                            <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+                        </video>
+                      </paper-video-controls>
+                    </li>
+                </ul>
+
+                <div class="section-content-heading paper-font-title" style="padding:16px 0;border-top:1px solid rgba(0,0,0,0.12);border-bottom:1px solid rgba(0,0,0,0.12)">
+                  <iron-icon icon="av:mic"></iron-icon> Senaste poddar
+                </div>
+                <ul>
+                  <li>
+                    <div class="paper-font-subhead">KFF-podden</div>
+                      <div class="layout horizontal center">
+                      <paper-audio-player 
+                          src="http://traffic.libsyn.com/force-cdn/highwinds/bakffpodden/Podd3_-_2017-01-19_14.17.mp3" 
+                          title="Här har du ditt nya jobb, Nanne"
+                          class="flex"
+                          >
+                      </paper-audio-player>
+                      <paper-icon-button icon="more-vert"></paper-icon-button>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="paper-font-subhead">Barrenbollen</div>
+                    <div class="layout horizontal center">
+                    <paper-audio-player 
+                        src="http://traffic.libsyn.com/force-cdn/ec/barrenbollen/Lansdowne_-_2017-01-21_11.16.m4a" 
+                        title="Billy Landsdown"
+                        class="flex"
+                        >
+                      </paper-audio-player>
+                      <paper-icon-button icon="more-vert"></paper-icon-button>
+                      </div>
+                  </li>
+                  <li>
+                    <div class="paper-font-subhead">Ickedickedoa</div>
+                    <div class="layout horizontal center">
+                    <paper-audio-player 
+                        src="http://traffic.libsyn.com/force-cdn/ec/ickedickedoa/ickedickecomeback.mp3" 
+                        title="Ickedickedoa #1"
+                        class="flex"
+                        >
+                      </paper-audio-player>
+                      <paper-icon-button icon="more-vert"></paper-icon-button>
+                      </div>
+                  </li>
+                </ul>
                 </paper-material>
             </article>
             <div class="inner-article-area">
